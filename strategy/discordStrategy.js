@@ -1,14 +1,15 @@
 const DiscordStrategy = require('passport-discord').Strategy;
 const passport = require('passport');
-const discordUser = require('../models/discordUser');
+const discordUser = require('../models/user');
+require('dotenv').config()
 
 passport.serializeUser((user, done) => {
-    console.log('Serializing user');
+    // console.log('Serializing user');
     done(null, user.id);
 })
 
 passport.deserializeUser(async (id, done) => {
-    console.log('Deserializing user');
+    // console.log('Deserializing user');
     const user = await discordUser.findById(id);
     if(user) {
         done(null, user);

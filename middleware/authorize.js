@@ -1,11 +1,12 @@
 const isAuthorize = (req, res, next) => {
     if(req.user) {
-        console.log("User is logged in");
         next();
     } else {
-        console.log("User is not logged in");
-        res.redirect('/');
+        console.log("Unauthorized page");
+        return res.json({ success: false, msg: "User not logged in" });
     }
+    
+    next();
 }
 
 module.exports = isAuthorize;

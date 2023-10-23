@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const authorize = require('../middleware/authorize');
+const isAuthorize = require('../middleware/authorize');
 
-router.get('/', (req, res, next) => {
+router.get('/', isAuthorize, (req, res) => {
     res.status(200).send('Profile Page');
 })
 

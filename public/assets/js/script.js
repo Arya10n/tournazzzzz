@@ -56,23 +56,20 @@ const observer = new IntersectionObserver(entries => {
 const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach(el => observer.observe(el))
 
-// login
-
-let loginStatus
-setTimeout(async () => {
-  const response = await fetch('http://localhost:3000/api/login')
+const login = async () => {
+  const response = await fetch('http://localhost:5000/api/checkLogin')
   const data = await response.json()
-  loginStatus = data.login
-  console.log('Haa ho raha bsdk')
+  let loginStatus = data.login
 
   let loginbtn = document.getElementById('login')
-  // loginbtn.textContent = 'hello'
   console.log(loginStatus)
   if (loginStatus) {
-    loginbtn.textContent = 'LO-GOUT'
-    loginbtn.href = 'http://localhost:3000/auth/logout'
+    loginbtn.textContent = 'LOG-OUT'
+    loginbtn.href = 'http://localhost:5000/auth/logout'
   } else {
     loginbtn.textContent = 'LOG-IN'
-    loginbtn.href = 'http://localhost:3000/auth'
+    loginbtn.href = 'http://localhost:5000/auth/login'
   }
-}, 0)
+}
+
+login();
