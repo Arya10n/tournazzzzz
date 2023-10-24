@@ -32,6 +32,7 @@ passport.use(new DiscordStrategy({
             const newUser = await discordUser.create({
                 discordId: profile.id,
                 discordUsername: profile.username,
+                games: [],
             })
             const savedUser = await newUser.save();
             done(null, savedUser);
