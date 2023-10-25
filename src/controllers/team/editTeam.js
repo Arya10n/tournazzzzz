@@ -1,5 +1,5 @@
-const Teams = require('../models/team');
-const Users = require('../models/user');
+const Teams = require('../../models/team');
+const Users = require('../../models/user');
 
 const getEditTeam = async (req, res) => {
     const { game, teamName } = req.params;
@@ -29,7 +29,7 @@ const getEditTeam = async (req, res) => {
         await Teams.findOneAndUpdate({
             teamName: {$regex: teamName, $options: 'i'}, 
             game: {$regex: game, $options: 'i'}}, 
-            {$push: {members: { discordUsername: member }}});
+            {$push: {members: { discordUsername: member.toLowerCase() }}});
         console.log('Updated team member');
 
         const currentUser = await Users.find().byDiscordUsername(member);

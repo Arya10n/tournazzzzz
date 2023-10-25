@@ -1,5 +1,5 @@
-const Tournaments = require('../models/tournament');
-const bracketUpdate = require('../utils/bracketUpdate');
+const Tournaments = require('../../models/tournament');
+const bracketUpdate = require('../../utils/bracketUpdate');
 
 const reportTournament = async (req, res) => {
     const { tournamentName, organiserName, matchId } = req.params;
@@ -23,14 +23,14 @@ const reportTournament = async (req, res) => {
 
         currentTournament[0].matches.forEach((match) => {
             if(match.matchId == matchId) {
-                if(!(match.team1Name==winner || match.team2Name==winner)) {
+                if(!(match.team1Name == winner.toLowerCase() || match.team2Name == winner.toLowerCase() )) {
                     wrongTeam = true;
                     return;
                 }
                 if(match.winner == "") {
                     added = true;
                 }
-                match.winner = winner;
+                match.winner = winner.toLowerCase();
                 updated = true;
                 bracketUpdate(currentTournament, matchId);
                 return;
