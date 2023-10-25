@@ -1,39 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style3.css" />
+  </head>
+  <body>
     <form action="/api/tournament/create" method="POST">
-        <label for="tournamentName">TOURNAMENT NAME: </label>
-        <input name="tournamentName" id="tournamentName"><br>
-        <label for="organiserName">ORGANISER NAME: </label>
-        <input name="organiserName" id="organiserName"><br>
-        <label for="discordGuildInvite">DISCORD INVITE: </label>
-        <input name="discordGuildInvite" id="discordGuildInvite"><br>
-        <label for="startDate">START DATE: </label>
-        <input name="startDate" id="startDate" type="date"><br>
-        <label for="endDate">END DATE: </label>
-        <input name="endDate" id="endDate" type="date"><br>
-        <label for="tournamentGame">GAME: </label>
-        <input name="tournamentGame" id="tournamentGame"><br>
+      <label for="tournamentName">TOURNAMENT NAME</label>
+      <input name="tournamentName" id="tournamentName" type="text" /><br />
 
+      <label for="organiserName">ORGANISER NAME</label>
+      <input name="organiserName" id="organiserName" type="text" /><br />
+
+      <label for="discordGuildInvite">DISCORD INVITE</label>
+      <input name="discordGuildInvite" id="discordGuildInvite" type="text" /><br />
+
+      <label for="startDate">START DATE</label>
+      <input name="startDate" id="startDate" type="date" /><br />
+
+      <label for="endDate">END DATE</label>
+      <input name="endDate" id="endDate" type="date" /><br />
+
+      <label for="tournamentGame">GAME</label>
+      <input name="tournamentGame" id="tournamentGame" type="text" /><br />
+
+      <div class="submit-form">
         <button type="submit" id="submitButton">SUBMIT</button>
+      </div>
     </form>
-
-    <br><br><br>
-
-    <form action="/api/team/create" method="POST">
-        <label for="teamName">TEAM NAME: </label>
-        <input name="teamName" id="teamName"><br>
-        <label for="teamGame">GAME: </label>
-        <input name="teamGame" id="teamGame"><br>
-
-        <button type="submit" id="submitButton2">SUBMIT</button>
-    </form>
-
-    <!-- <script src="script.js"></script> -->
-</body>
+  </body>
 </html>
