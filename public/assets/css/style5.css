@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: hsl(234, 14%, 14%);
+}
+
+h1 {
+  text-align: center;
+  color: rgb(230, 10, 80);
+}
+
+.heading {
+  border-bottom: 3px solid hsla(0, 11%, 70%, 0.1);
+}
+
+.tournament-container {
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tournament {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  width: 300px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #ccc;
+}
+
+.tournament h2 {
+  font-size: 20px;
+}
+
+.tournament p {
+  margin: 5px 0;
+}
+
+.tournament a {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: rgb(230, 10, 80);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.tournament a:hover {
+  background-color: #2980b9;
+}
