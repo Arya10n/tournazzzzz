@@ -72,4 +72,4 @@ const login = async () => {
   }
 }
 
-login();
+login()
