@@ -4,10 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon src/app.js",
-    "bot": "nodemon discord-bot/bot.js",
-    "both": "concurrently \"nodemon src/app.js\" \"nodemon discord-bot/bot.js\"",
-    "bot-commands": "node discord-bot/deploy-commands.js"
+    "start": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
