@@ -1,4 +1,4 @@
-const Teams = require("../models/team");
+const Teams = require("../../models/team");
 
 const createTeam = async (req, res) => {
     const { teamName, teamGame } = req.body;
@@ -10,8 +10,8 @@ const createTeam = async (req, res) => {
     }
 
     await Teams.create({
-        teamName: teamName,
-        game: teamGame,
+        teamName: teamName.toLowerCase(),
+        game: teamGame.toLowerCase(),
         members: [],
     });
     console.log("Team created");

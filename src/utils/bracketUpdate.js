@@ -23,9 +23,9 @@ const bracketUpdate = async (currentTournament, matchId) => {
                 currentTournament[0].matches.forEach((nextMatch) => {
                     if(nextMatch.matchId == match.loserNextMatch) {
                         if(nextMatch.team1Name == "") {
-                            nextMatch.team1Name = (match.winner.toLowerCase() == match.team1Name.toLowerCase()) ? match.team2Name : match.team1Name;
-                        } else {
-                            nextMatch.team2Name = (match.winner.toLowerCase() == match.team1Name.toLowerCase()) ? match.team2Name : match.team1Name;
+                            nextMatch.team1Name = (match.winner.toLowerCase() == match.team1Name) ? match.team2Name : match.team1Name;
+                        } else if(nextMatch.team2Name == ""){
+                            nextMatch.team2Name = (match.winner.toLowerCase() == match.team1Name) ? match.team2Name : match.team1Name;
                         }
                     }
                 })

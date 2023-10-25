@@ -17,9 +17,9 @@ passport.deserializeUser(async (id, done) => {
 })
 
 passport.use(new DiscordStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: process.env.CLIENT_REDIRECT,
+    clientID: process.env.OAUTH_CLIENT_ID,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET,
+    callbackURL: process.env.OAUTH_CLIENT_REDIRECT,
     scope: ['identify']
 }, async (accessToken, refreshToken, profile, done) => {
     try {
@@ -32,6 +32,7 @@ passport.use(new DiscordStrategy({
             const newUser = await discordUser.create({
                 discordId: profile.id,
                 discordUsername: profile.username,
+                games: [],
             })
             const savedUser = await newUser.save();
             done(null, savedUser);

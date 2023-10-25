@@ -1,6 +1,6 @@
-const Tournaments = require('../models/tournament');
-const singleElimFinalizeBracket = require('../utils/singleElimFinalizeBracket');
-const doubleElimFinalizeBracket = require('../utils/doubleElimFinalizeBracket');
+const Tournaments = require('../../models/tournament');
+const singleElimFinalizeBracket = require('../../utils/singleElimFinalizeBracket');
+const doubleElimFinalizeBracket = require('../../utils/doubleElimFinalizeBracket');
 
 const getEditTournament = async (req, res) => {
     const { tournamentName, organiserName } = req.params;
@@ -15,30 +15,23 @@ const getEditTournament = async (req, res) => {
         await Tournaments.findOneAndUpdate({
             tournamentName: {$regex: tournamentName, $options: 'i'}, 
             organiserName: {$regex: organiserName, $options: 'i'}}, 
-            {format: format});
+            {format: format.toLowerCase()});
         console.log('Updated tournament format');
         return res.status(201).json({ success: true, msg: "Format updated" });
     }
 
     if(team) {
-        let sameTeamCheck = false;
-        if(currentTournament[0].teams.length > 0) {
-            currentTournament[0].teams.forEach((registeredTeam) => {
-                if(registeredTeam.teamName === team) {
-                    sameTeamCheck = true;
-                    return;
-                }
-            })
-        }
-
-        if(sameTeamCheck) {
-            return res.json({ success: false, msg: 'Team already registered' });
+        let teamName = team.toString().toLowerCase()
+        for(const team of currentTournament[0].teams) {
+            if(team.teamName == teamName) {
+                return res.json({ success: false, msg: 'Team already registered' });
+            }
         }
 
         await Tournaments.findOneAndUpdate({
             tournamentName: {$regex: tournamentName, $options: 'i'},
             organiserName: {$regex: organiserName, $options: 'i'}}, 
-            {$push: {teams: {teamName: team}}});
+            {$push: {teams: {teamName: teamName}}});
         console.log('Updated tournament team');
 
         return res.status(201).json({ success: true, msg: "Team added" });

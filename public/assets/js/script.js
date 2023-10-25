@@ -57,9 +57,8 @@ const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach(el => observer.observe(el))
 
 const login = async () => {
-  const response = await fetch('http://localhost:5000/api/checkLogin')
-  const data = await response.json()
-  let loginStatus = data.login
+  const response = await axios.get('http://localhost:5000/api/check/login')
+  let loginStatus = response.data.login
 
   let loginbtn = document.getElementById('login')
   console.log(loginStatus)

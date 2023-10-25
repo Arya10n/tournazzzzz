@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const TournamentSchema = new mongoose.Schema({
-    tournamentName: { type: String, required: true },
-    organiserName: { type: String, required: true, immutable: true },
+    tournamentName: { type: String, required: true, minLength: 3, maxLength: 20 },
+    organiserName: { type: String, required: true, immutable: true, minLength: 3, maxLength: 20 },
     discordGuildInvite: { type: String, required: false, lowercase: true, minLength: 10, maxLength: 30 },
     startDate: { type: String, required: true },
     endDate: { type: String, required: true },
@@ -38,7 +38,7 @@ TournamentSchema.query.byGame = function(name) {
 }
 
 TournamentSchema.query.byTeamName = function(name) {
-    return this.where({ 'team.teamName': new RegExp(name, 'i') });
+    return this.where({ teams: { $elemMatch: { teamName: { $regex: new RegExp(name, 'i') } } }});
 }
 
 module.exports = mongoose.model("Tournaments", TournamentSchema);
