@@ -73,6 +73,16 @@ app.get('/api/search', searchTournaments, (req, res) => {
     res.sendStatus(200);
 })
 
+app.get('/redirect/:first/:second/:third', (req, res) => {
+    const { first, second, third } = req.params;
+    res.redirect(`/${first}/${second}/${third}`);
+})
+
+app.get('/to/:organiserName/:tournamentName', (req, res) => {
+    // res.sendFile(path.join(rootdir, '/public/tournament.html'));
+    res.sendStatus(200);
+})
+
 const start = async () => {
     try {
         app.listen(process.env.PORT, () => {
